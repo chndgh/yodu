@@ -1,0 +1,43 @@
+<div ng-controller="UploadCtrl">
+    <!--<div style="margin-top: 10px; margin-left: 180px">-->
+        <!--<input id="specialrecommendfile" type="file" size="30"-->
+               <!--name="file">-->
+        <!--<button type="button" onclick="UploadSpecialRecommendPic()"-->
+                <!--class="btn btn-warning btn-lg">上传</button>-->
+        <!--<input type=hidden class="span5" id="specialRecommendPic"-->
+               <!--name="riIndexPic">-->
+    <!--</div>-->
+
+
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+            <table>
+                <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+                <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+            </table>
+        </form>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>用户名</th>
+                    <th>发布时间</th>
+                    <th>文字内容</th>
+                    <th>图片</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in users">
+                <td ng-bind="x.username"></td>
+                <td ng-bind="x.createTime"></td>
+                <!--<td><a ng-href="#!/vehicleInfo/{{x.vin}}" ng-bind="x.carPlate"></a></td>-->
+                <td ng-bind="x.content"></td>
+                <td ng-bind="x.picture"></td>
+                <!--<td ng-bind="x.shopAddress"></td>-->
+                <!--<td ng-bind="x.owner"></td>-->
+                <!--<td ng-bind="x.phone"></td>-->
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div ng-controller="CMCtrl" style="text-align:center">
+    <form class="createMessageForm" ng-click="submit()">
+        <fieldset>
+            <div id="legend" class="">
+                <legend class="">发车友圈</legend>
+            </div>
+            <div class="control-group">
+
+                <!-- Textarea -->
+                <label class="control-label">输入文字</label>
+                <div class="controls">
+                    <div class="textarea">
+                        <textarea type="" class="" ng-model="content"> </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div ng-repeat="step in stepsModel">
+                    <img ng-src="{{step}}" style="width:100px;margin:5px;float:none"/>
+                </div>
+                <label class="control-label" for="fileInput">选择图片</label>
+                <!-- File Upload -->
+                <div class="controls">
+                    <input type="file"  id="fileInput" onchange="angular.element(this).scope().imageUpload(event)" style="margin:auto;" multiple>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!--<label class="control-label">发布</label>-->
+
+                <!-- Button -->
+                <div class="controls">
+                    <input type="submit"  class="btn btn-success" value="发布"></inputbutton>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>

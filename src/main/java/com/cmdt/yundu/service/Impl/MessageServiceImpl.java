@@ -2,6 +2,7 @@ package com.cmdt.yundu.service.Impl;
 
 import com.cmdt.yundu.model.Message;
 import com.cmdt.yundu.repository.MessageRepository;
+import com.cmdt.yundu.service.IMessageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Created by dingguohua on 2017/5/27.
  */
 @Service
-public class MessageServiceImpl {
+public class MessageServiceImpl implements IMessageService{
 
     @Autowired
     MessageRepository messageRepository;

@@ -17,9 +17,9 @@ import java.util.Date;
  * Created by dingguohua on 2017/5/25.
  */
 
-@Controller
-@RequestMapping("/user")
-@EnableAutoConfiguration
+//@Controller
+//@RequestMapping("/user")
+//@EnableAutoConfiguration
 public class UserController {
 
     @Autowired
