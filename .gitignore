@@ -1,6 +1,7 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
-
+friendGroup/node_modules
+friendGroup/app/bower_components
 ### STS ###
 .apt_generated
 .classpath
