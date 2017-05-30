@@ -13,15 +13,17 @@ angular.module('myApp.cm', ['ngRoute'])
         $scope.message = {};
         $scope.photos = [];
         $scope.request = {};
+        $scope.images = [];
 
-        $scope.imageUpload = function(event){
-            var images = event.target.files; //images list object
-            for (var i = 0; i < images.length; i++) {
-                var image = images[i];
+        $scope.imageUpload = function(files){
+            // var images = event.target.files; //images list object
+            for (var i = 0; i < files.length; i++) {
+                var image = files[i];
                 console.log(image);
                 var photo = {};
                 photo.name = image.name;
                 $scope.photos.push(photo);
+                $scope.images.push(image);
                 var reader = new FileReader();
                 reader.onload = $scope.imageIsLoaded;
                 reader.readAsDataURL(image);
@@ -32,12 +34,13 @@ angular.module('myApp.cm', ['ngRoute'])
             $scope.$apply(function(){
                 $scope.stepsModel.push(e.target.result);
             })
-        }
+        };
 
         $scope.submit = function(){
-            console.log($scope.photos);
+            console.log("111111111111111111111");
+            console.log($scope.images );
             $scope.message.content = $scope.content;
-            $scope.request = {message:$scope.message,photos:$scope.photos};
+            $scope.request = {message:$scope.message,photos:$scope.photos,images:$scope.images};
             $http.post("http://localhost:9000/message/create",$scope.request);
         };
     }]);

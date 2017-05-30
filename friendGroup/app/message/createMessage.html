@@ -1,5 +1,5 @@
 <div ng-controller="CMCtrl" style="text-align:center">
-    <form class="createMessageForm" ng-click="submit()">
+    <form class="createMessageForm" enctype="multipart/form-data" ng-click="submit()">
         <fieldset>
             <div id="legend" class="">
                 <legend class="">发车友圈</legend>
@@ -22,7 +22,7 @@
                 <label class="control-label" for="fileInput">选择图片</label>
                 <!-- File Upload -->
                 <div class="controls">
-                    <input type="file"  id="fileInput" onchange="angular.element(this).scope().imageUpload(event)" style="margin:auto;" multiple>
+                    <input type="file"  id="fileInput" ng-model="images" onchange="angular.element(this).scope().imageUpload(this.files)" style="margin:auto;" multiple>
                 </div>
             </div>
 
