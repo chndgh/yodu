@@ -18,7 +18,7 @@ public class NewMessageTO {
 //    @JsonProperty("photos")
     private List<Photo> photos;
 
-    private List<MultipartFile> images;
+//    private List<MultipartFile> images;
 
     public List<Photo> getPhotos() {
         return photos;
@@ -36,11 +36,11 @@ public class NewMessageTO {
         this.message = message;
     }
 
-    public List<MultipartFile> getImages() {
-        return images;
-    }
-
-    public void setImages(List<MultipartFile> images) {
-        this.images = images;
-    }
+//    public List<MultipartFile> getImages() {
+//        return images;
+//    }
+//
+//    public void setImages(List<MultipartFile> images) {
+//        this.images = images;
+//    }
 }

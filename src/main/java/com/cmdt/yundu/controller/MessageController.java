@@ -15,18 +15,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -63,6 +67,43 @@ public class MessageController {
 //        return ResponseTO.successResp(user);
 //    }
 
+    @RequestMapping(value = "/savePhoto", method = RequestMethod.POST)
+    @ResponseBody
+    public void savePhotos(HttpServletRequest request,HttpServletResponse res){
+        LOGGER.info("enter MessageController.savePhotos");
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println("id=="+id);
+        System.out.println("request.getSession() : " + request.getSession());
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        if (multipartResolver.isMultipart(request)){
+            MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+            Iterator iterator = multipartRequest.getFileNames();
+            while(iterator.hasNext()){
+                String name = (String)iterator.next();
+                System.out.println("name:" + name);
+                System.out.println("context path: " + ClassUtils.getDefaultClassLoader().getResource("").getPath());
+                MultipartFile file = multipartRequest.getFile(name);
+                if (file != null){
+                    String fileName=file.getOriginalFilename();
+                    String path = "C:/work/projects/yodu/upload/" + fileName;
+                    File localFile = new File(path);
+                    if (!localFile.getParentFile().exists()){
+                        localFile.getParentFile().mkdirs();
+                        System.out.println("parent: " + localFile.getParentFile().getPath());
+                    }
+
+                    try {
+                        file.transferTo(localFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+
+
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -82,17 +123,17 @@ public class MessageController {
         message.getMessage().setUser(user);
 
         //store pictures
-        message.getImages().stream().forEach(image ->{
-            if (image.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + image.getName());
-            }
-
-            try {
-                Files.copy(image.getInputStream(), rootLocation.resolve(image.getOriginalFilename()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+//        message.getImages().stream().forEach(image ->{
+//            if (image.isEmpty()) {
+//                throw new StorageException("Failed to store empty file " + image.getName());
+//            }
+//
+//            try {
+//                Files.copy(image.getInputStream(), rootLocation.resolve(image.getOriginalFilename()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
         Message m = messageService.createMessage(message.getMessage());
 
         if (m != null){
