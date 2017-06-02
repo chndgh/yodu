@@ -69,9 +69,11 @@ public class MessageController {
 
     @RequestMapping(value = "/savePhoto", method = RequestMethod.POST)
     @ResponseBody
-    public void savePhotos(HttpServletRequest request,HttpServletResponse res){
+    public void savePhotos(HttpServletRequest request){
         LOGGER.info("enter MessageController.savePhotos");
         int id = Integer.parseInt(request.getParameter("id"));
+        String content = request.getParameter("content");
+        System.out.println("content = " +content);
         System.out.println("id=="+id);
         System.out.println("request.getSession() : " + request.getSession());
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
