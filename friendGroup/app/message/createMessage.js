@@ -10,15 +10,19 @@ angular.module('myApp.cm', ['ngRoute'])
     .controller('CMCtrl', ['$scope', '$http', 'FileUploader', function($scope, $http, FileUploader) {
 
         var uploader = $scope.uploader = new FileUploader({
-            url: 'http://localhost:8080/message/savePhoto'
+            url: 'http://localhost:9000/message/postNewMessage'
         });
 
         uploader.onBeforeUploadItem = function (item) {
-            item.alias = "name";
+            item.alias = item.file.name;
             item.formData=[ {id:666,content:$scope.content}];
         };
 
         uploader.onAfterAddingAll = function(addedFileItems) {
+            angular.forEach(addedFileItems,function (item) {
+                console.log(item.file.name);
+                item.alias = item.file.name;
+            });
             console.log(uploader.formData);
             console.info('onAfterAddingAll', addedFileItems);
         };

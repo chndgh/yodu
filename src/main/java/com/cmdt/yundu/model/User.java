@@ -15,17 +15,17 @@ public class User implements java.io.Serializable{
 
     private String alais;
 
-//    private Blob headPortait;
+    private Blob headPortait;
 
     private String email;
 
     private String gender;
-    @Column(name = "realName")
+
     private String realName;
 
     private String phone;
 
-//    private Date createTime;
+    private Date createTime;
 
     private String username;
 
@@ -58,13 +58,13 @@ public class User implements java.io.Serializable{
         this.alais = alais;
     }
 
-//    public Blob getHeadPortait() {
-//        return headPortait;
-//    }
-//
-//    public void setHeadPortait(Blob headPortait) {
-//        this.headPortait = headPortait;
-//    }
+    public Blob getHeadPortait() {
+        return headPortait;
+    }
+
+    public void setHeadPortait(Blob headPortait) {
+        this.headPortait = headPortait;
+    }
 
     public String getEmail() {
         return email;
@@ -98,13 +98,13 @@ public class User implements java.io.Serializable{
         this.phone = phone;
     }
 
-//    public Date getCreateTime() {
-//        return createTime;
-//    }
-//
-//    public void setCreateTime(Date createTime) {
-//        this.createTime = createTime;
-//    }
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public String getUsername() {
         return username;
@@ -159,12 +159,12 @@ public class User implements java.io.Serializable{
         return "User{" +
                 "id=" + id +
                 ", alais='" + alais + '\'' +
-//                ", headPortait=" + headPortait +
+                ", headPortait=" + headPortait +
                 ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
                 ", realName='" + realName + '\'' +
                 ", phone='" + phone + '\'' +
-//                ", createTime=" + createTime +
+                ", createTime=" + createTime +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", selfIntroduce='" + selfIntroduce + '\'' +

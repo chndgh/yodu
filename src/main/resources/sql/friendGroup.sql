@@ -11,12 +11,12 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user (
   id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   alais VARCHAR(40) DEFAULT NULL ,
-#   headPortait  VARBINARY(500) DEFAULT null,
+  headPortait  VARBINARY(500) DEFAULT null,
   email VARCHAR (40) DEFAULT NULL ,
   gender VARCHAR (10) DEFAULT NULL ,
   realName VARCHAR (40) DEFAULT NULL ,
   phone VARCHAR (20) DEFAULT NULL ,
---   createTime DATETIME DEFAULT NULL ,
+  createTime DATETIME DEFAULT NULL ,
   username VARCHAR (40) DEFAULT NULL ,
   password VARCHAR (40) DEFAULT NULL ,
   selfIntroduce VARCHAR (100) DEFAULT NULL ,
@@ -96,7 +96,7 @@ create table photo(
   uid int(11) DEFAULT null,
   mid int(11) DEFAULT null,
   name VARCHAR(20) DEFAULT null,
-  address VARCHAR(20) DEFAULT null,
+  address VARCHAR(100) DEFAULT null,
   CONSTRAINT fk_user_photo FOREIGN KEY(uid) REFERENCES user(id),
   CONSTRAINT fk_message_photo FOREIGN KEY (mid) REFERENCES message(id)
 )ENGINE=InnoDB DEFAULT CHARSET = utf8;
